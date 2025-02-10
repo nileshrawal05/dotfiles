@@ -46,7 +46,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 bindkey -e
@@ -78,6 +78,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias c='clear'
 alias cd='z'
+alias tmux='tmux -u'
 
 # Add ~/.fzf/bin to PATH
 export PATH="$HOME/.fzf/bin:$PATH"
@@ -88,3 +89,8 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+export PATH="$HOME/qemu-9.0.1/build:$PATH"
+export PATH="$HOME/nvim-linux64/bin:$PATH"
+
+export SRC_ENDPOINT=https://sourcegraph.com/
+export SRC_ACCESS_TOKEN=sgp_fd1b4edb60bf82b8_9667a16e04c04d390896b59673137eb59c2a35bc
