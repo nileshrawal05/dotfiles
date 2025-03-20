@@ -1,0 +1,31 @@
+local mod = {}
+
+mod.setup = function(client, bufnr)
+    vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { buffer = bufnr, silent = true })
+    vim.keymap.set('n', "<leader>lwa", function() vim.lsp.buf.add_workspace_folder() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lwr", function() vim.lsp.buf.remove_workspace_folder() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lwl",
+        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lp", function() require 'cfg.lsp.utils'.PeekDefinition() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lh", function() vim.lsp.buf.hover() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>ls", function() vim.lsp.buf.signature_help() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lr", function() vim.lsp.buf.rename() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>la", function() vim.lsp.buf.code_action() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lt", function() vim.lsp.buf.type_definition() end, { buffer = bufnr })
+    vim.keymap.set({'n', 'v'}, "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lT", "<cmd>LspStop<CR>", { buffer = bufnr })
+    vim.keymap.set('n', "<leader>li", "<cmd>LspInfo<CR>", { buffer = bufnr })
+    vim.keymap.set('n', "<leader>lR", "<cmd>LspRestart<CR>", { buffer = bufnr })
+    vim.keymap.set('n', "<leader>do", function() vim.diagnostic.open_float() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>dp", function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>dn", function() vim.diagnostic.goto_next() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>ds", function() vim.diagnostic.show() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>dh", function() vim.diagnostic.hide() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>dd", function() vim.diagnostic.disable() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>de", function() vim.diagnostic.enable() end, { buffer = bufnr })
+    vim.keymap.set('n', "<leader>dq", function() vim.diagnostic.toqflist() end, { buffer = bufnr })
+end
+return mod
